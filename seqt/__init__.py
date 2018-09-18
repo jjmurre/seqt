@@ -1,5 +1,5 @@
 from string import Template
-from ConfigParser import RawConfigParser
+from six.moves import configparser
 
 
 class SQLQuery(object):
@@ -24,7 +24,7 @@ class SQLFragment(SQLQuery):
 class SQLFactory(object):
 
     def __init__(self, file_path):
-        cp = RawConfigParser()
+        cp = configparser.RawConfigParser()
         cp.readfp(open(file_path))
         self.all = dict(cp.items('queries'))
         self.fragments = dict(cp.items('fragments'))
