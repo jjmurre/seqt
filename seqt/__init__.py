@@ -1,3 +1,4 @@
+import sys
 from string import Template
 from six.moves import configparser
 
@@ -25,7 +26,11 @@ class SQLFactory(object):
 
     def __init__(self, file_path):
         cp = configparser.RawConfigParser()
-        cp.readfp(open(file_path))
+        fp = open(file_path)
+        if sys.version_info > (3, 2):
+            cp.read_file(fp)
+        else:
+            cp.readfp(fp)
         self.all = dict(cp.items('queries'))
         self.fragments = dict(cp.items('fragments'))
         self.all.update(self.fragments)
