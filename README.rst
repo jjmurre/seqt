@@ -12,7 +12,7 @@ The keys of the ini file entries will be converted into callable functions.
 Example
 =======
 
-Give an ini file with the following contents::
+Given an ini file with the following contents::
 
     [queries]
 
